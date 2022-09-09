@@ -8,7 +8,7 @@
 ![פוסטר 2](https://user-images.githubusercontent.com/58606266/179733211-cbfcb413-2774-4fe1-9381-a4448343a86f.PNG)
 
 ## Technologies
-![Technologies](Fault-Management-System/Tec.png)
+![Technologies](https://user-images.githubusercontent.com/57983441/189459908-edef8014-5401-4c07-ad15-3317b9348c56.png)
 
 
 </br>
