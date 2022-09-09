@@ -1,0 +1,299 @@
+<header className="main-header">
+                <Navbar bg="dark" variant="dark">
+                    <Container>
+                    <button className="main-navigation__menu-btn" onClick={openDrawerHandler}>
+                        <span />
+                        <span />
+                        <span />
+                    </button>
+                    <Navbar.Brand href="#home">Application</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        {isLogin  
+                        ? <Nav.Link  onClick={handleLogout}>
+                            Logout
+                        </Nav.Link>    
+                        : NotAuth()
+                        }
+                    </Nav>
+                    </Container>
+                </Navbar>
+            </header>
+
+            
+/////////////////
+
+
+
+import React, {Component} from 'react'
+import Axios from 'axios';
+// import Modal from 'react-bootstrap/Modal'
+// import Nav  from "react-bootstrap/Nav"
+import Button from 'react-bootstrap/Button'
+import Form from "react-bootstrap/Form"
+import Error from '../shared/components/FormElements/error';
+
+// this.props.location.state.detail.user
+class Registration extends Component {
+    state={email:"",pass:"",confPass:"",name:"",registerErrors:""}
+    
+  
+
+    componentDidUpdate(_props,_state){
+        if(this.state.registerErrors.length>0 && 
+            (this.state.email!==_state.email || this.state.pass!==_state.pass)){
+            this.setState({registerErrors:""})
+        }
+    }
+
+    registerationHandler = async (event) => {
+        event.preventDefault();
+        console.log("registration event")
+        Axios.post('/register',{
+            name:this.state.name,
+            email:this.state.email,
+            pass:this.state.pass,
+
+        }).then((response)=>{
+            console.log(response.data)
+            alert("Registration Succeed")
+            this.props.history.push({
+                pathname:'/registration',
+                state:{detail:response.data}
+            })
+        })
+        .catch((err)=>{
+            console.log(err.response)
+            if(err.response.status===400){
+                this.setState({registerErrors:err.response.data[0].message})
+            }
+            else if(err.response.status===401){
+                this.setState({registerErrors:err.response.data.msg})
+            }
+            
+        })
+
+    }
+
+
+    validateForm() {
+        return this.state.email.length > 0 && this.state.pass.length > 0 &&
+         this.state.confPass.length > 0 && this.state.name.length>0 && 
+         this.state.pass===this.state.confPass;
+    }
+    ValidPassConfirm(e){
+        this.setState({confPass:e.target.value})
+        if(e.target.value!==this.state.pass){
+            this.setState({registerErrors:"Confirm password not match with password"})
+        }
+        else{
+            this.setState({registerErrors:""})
+        }
+        
+    }
+
+    render(){
+        
+        return (
+            <div className="auth">
+                <h1 className="auth-header">Sign up</h1>
+                <br/>
+                <Form onSubmit={this.registerationHandler}>
+                    <Form.Group size="lg" controlId="email">
+                    <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            autoFocus
+                            value={this.state.name}
+                            onChange={(e) => this.setState({name:e.target.value})}
+                        />
+                    </Form.Group >
+                    <br/>
+                    <Form.Group size="lg" controlId="email">
+                    <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            autoFocus
+                            type="email"
+                            value={this.state.email}
+                            onChange={(e) => this.setState({email:e.target.value})}
+                        />
+                    </Form.Group >
+                    <br/>
+                    <Form.Group size="lg" controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={this.state.pass}
+                            onChange={(e) => this.setState({pass:e.target.value})}
+                        />
+                    </Form.Group >
+                    <br/>
+                    <Form.Group size="lg" controlId="password">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={this.state.confPass}
+                            onChange={(e) => this.ValidPassConfirm(e)}
+                        />
+                    </Form.Group >
+                    <br/>
+                    <Button block size="lg" type="submit" disabled={!this.validateForm()}>
+                        Sign up
+                    </Button>
+                    <br/>
+                    <br/>
+                    <Error Error={this.state.registerErrors}/>
+                </Form>
+            </div>
+                   
+            // <div className="Login">
+            // <Form onSubmit={registerationHandler}>
+                
+            //     <Form.Group size="lg" controlId="email">
+            //     <Form.Label>Name</Form.Label>
+            //     <Form.Control
+            //         autoFocus
+            //         type="email"
+            //         value={login.email}
+            //         onChange={(e) => setLogin({...login,email:e.target.value})}
+            //     />
+            //     </Form.Group>
+            //     <Form.Group size="lg" controlId="email">
+            //     <Form.Label>Email</Form.Label>
+            //     <Form.Control
+            //         autoFocus
+            //         type="email"
+            //         value={login.email}
+            //         onChange={(e) => setLogin({...login,email:e.target.value})}
+            //     />
+            //     </Form.Group>
+            //     <br/>
+            //     <Form.Group size="lg" controlId="password">
+            //     <Form.Label>Password</Form.Label>
+            //     <Form.Control
+            //         type="password"
+            //         value={login.password}
+            //         onChange={(e) => setLogin({...login,pass:e.target.value})}
+            //     />
+            //     </Form.Group>
+            //     <br/>
+            //     <Form.Group size="lg" controlId="password">
+            //     <Form.Label>Confirm Password</Form.Label>
+            //     <Form.Control
+            //         type="password"
+            //         value={login.password}
+            //         onChange={(e) => setLogin({...login,pass:e.target.value})}
+            //     />
+            //     </Form.Group>
+            //     <br/>
+            //     <Button block size="lg" type="submit" disabled={!validateForm()}>
+            //         Login
+            //     </Button>
+            //     <br/>
+            //     <br/>
+            //     <Error Error={login.loginErrors}/>
+            //     <Link to="/register">create new account</Link>
+            // </Form>
+            // </div>
+        );
+    }
+}
+
+export default Registration;
+
+///////////formGroup
+import React, { useEffect } from "react";
+import Form from "react-bootstrap/Form";
+
+const FormGroup = (props) => {
+    
+    
+  let nameInput;
+  useEffect(() => {
+    if (props.focus) {
+      nameInput.focus();
+    }
+  }, []);
+  return (
+    <Form.Group size="lg" controlId="email">
+      <Form.Label>{props.labelName}</Form.Label>
+      <Form.Control
+        ref={(input) => {
+          nameInput = input;
+        }}
+        type="email"
+        value={props.value}
+        onChange={props.onChange}
+      />
+    </Form.Group>
+  );
+};
+
+export default FormGroup;
+////////////////////////
+
+const generateSerial = () => {
+    "use strict";
+    var chars =
+        "1234567890",
+      serialLength = 10,
+      randomSerial = "",
+      i,
+      randomNumber;
+
+    for (i = 0; i < serialLength; i = i + 1) {
+      randomNumber = Math.floor(Math.random() * chars.length);
+      randomSerial += chars.substring(randomNumber, randomNumber + 1);
+    }
+
+    setFault((prevState) => {
+      return {
+        ...prevState,
+        number: randomSerial,
+      };
+    }); 
+  };    
+  
+//////////////////////////////////////////////////predictions of id
+  const INPUT_TIMEOUT = 250;  
+  let timeout;
+  const [predictions, setPredictions] = useState([]);
+  
+  const getPredictions = (value) => {
+    // let's say that it's an API call
+    return [
+      "Boston",
+      "Los Angeles",
+      "San Diego",
+      "San Franciso",
+      "Sacramento",
+      "New York",
+      "New Jersie",
+      "Chicago",
+    ].filter((item) => item.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  };        
+
+  const clientIdHandler = (e) => {
+    clearTimeout(timeout);
+    let value = e.target.value;
+    setFault((prevState) => {
+      return { ...prevState, clientID: value };
+    });
+
+    if (value.length > 0) {
+      // make delayed api call
+      timeout = setTimeout(() => {
+        let Predictions = getPredictions(value);
+        setPredictions(Predictions);
+        console.log(Predictions);
+      }, INPUT_TIMEOUT);
+    } else {
+      setPredictions([]);
+    }
+  };
+
+   <div>
+      {predictions.map((item, index) => {
+        return <div key={index + item}>{item}</div>;
+      })}
+    </div>
+/////////////////////////////////////////

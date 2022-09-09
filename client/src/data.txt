@@ -1,0 +1,34 @@
+ // style={{backgroundImage: `url("https://wallpaperaccess.com/full/3949076.jpg")`,
+        //     width: '100%',height: '1080px',backgroundsize: 'cover'}}
+
+
+
+useEffect(() => {
+    if (props.focus) {
+      nameInput.focus();
+    }
+  }, []);
+
+ ref={(input) => {
+          nameInput = input;
+        }}
+//////////////////////
+
+<Form.Control                     ####select dynamic
+  as="select"
+  value={fault.team}
+  onChange={(e) => {
+    teamHandler(e, setFault, setTeamMember);
+  }}
+>
+  
+  {fault.teams.map((team) => {
+    return (
+      <option key={team._id} value={team.name}>
+        {team.name}
+      </option>
+    );
+  })}
+</Form.Control>
+
+////////////////////

@@ -1,0 +1,25 @@
+{
+  "name": "express0_season11",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.2",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-bootstrap": "^2.0.0-beta.6",
+    "react-modal": "^3.14.3",
+    "react-transition-group": "^4.4.2"
+  }
+}

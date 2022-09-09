@@ -1,0 +1,66 @@
+--------------------------------------חלק 3
+//הגדרנו משתנה שיש לו יכולות מיוחדות של האקספרס
+const express = require("express");
+//משתנה שיש לו יכולת להפעיל שרת
+const http = require("http");
+//יצרנו משתנה שיש לו תיכולת של האקספרס כולל האזנה לראוט
+const app=express();
+
+//הגדרנו ראוט של העמוד בית 
+//req->מה שנקבל בדרך כלל מהצד לקוח או הדפדפן בראוט
+//res->מה השרת מגיב לצד לקוח,במקרה שלנו דפדפן
+app.get("/",(req,res) => {
+    //אומר לו להחזיר מידע בפורמט ג'ייסון לצד לקוח
+    res.json({msg:"express work perfect 1138"});
+})
+//מייצרים שרת שמשתמש במשתנה אפ שיש לו את כל היכולות המיוחדות של אקספרס 
+const server = http.createServer(app);
+
+//הגדרנו פורט
+//process.env.PORT- בודק אם יש פורט מועדף על אותו שרת,אם כן בוחר אותו
+let port =process.env.PORT || "3000";
+//מאזינים לשרת בפורט 3000
+server.listen(port);
+--------------------------------------חלק 4
+const express = require("express");
+//יודע לקחת כתובת ולעשות אליה מניפולציות
+const path = require("path")
+const http = require("http");
+const app=express();
+
+//הגדרת פירסור מידע כג'ייסון
+app.use(express.json());
+//נגדיר את תקיית הפאבליק כתקייה סטטית שניתן לשים בה קבצים ולצד לקוח יהיה גישה
+app.use(express.static(path.join(__dirname,"public")));
+
+
+//req->מה שנקבל בדרך כלל מהצד לקוח או הדפדפן בראוט
+//res->מה השרת מגיב לצד לקוח,במקרה שלנו דפדפן
+app.get("/",(req,res) => {
+    //אומר לו להחזיר מידע בפורמט ג'ייסון לצד לקוח
+    res.json({msg:"express work perfect 1138"});
+})
+
+
+//מייצרים שרת שמשתמש במשתנה אפ שיש לו את כל היכולות המיוחדות של אקספרס 
+const server = http.createServer(app);
+//הגדרנו פורט
+let port =process.env.PORT || "3000";
+server.listen(port);
+
+
+
+// await FaultModel.findByIdAndRemove(id); delete collection from Fault table by id
+
+
+
+//shopData query search
+router.get("/category",(req,res) => {
+    let categoryQ=req.query.category
+    let temp_ar = prods_ar.filter(item => {
+        return item.cat==categoryQ;
+    })
+    res.json(temp_ar)
+
+    
+})

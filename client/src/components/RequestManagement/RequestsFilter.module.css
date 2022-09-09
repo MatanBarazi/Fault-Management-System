@@ -1,0 +1,21 @@
+.responsive {
+  margin-top: 10px;
+}
+.responsive button {
+    width: 100px;
+    margin-right: 20px;
+}
+.responsive button:first-child{
+    margin-bottom: 5px;
+}
+
+
+
+@media (min-width: 1825px) {
+  .responsive {
+    margin-top: 30px;  
+  }
+  .responsive button {
+    width: auto;
+  }
+}

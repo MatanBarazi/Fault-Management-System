@@ -1,0 +1,113 @@
+.button {
+  font: inherit;
+  padding: 0.5rem 0.8rem;
+  /* border: 1px solid #38a5ff; */
+  border:none;
+  border-radius: 6px;
+  background: #38a5ff;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: #38a5ffbd;
+  border-color: #38a5ffbd;
+}
+
+.button--inverse {
+  background: transparent;
+  color: #38a5ff;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: #38a5ffbd;
+}
+
+.button--danger {
+  background: #830000;
+  border-color: #830000;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: #f34343;
+  border-color: #f34343;
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button--small {
+  font-size: 0.8rem;
+}
+
+.button--big {
+  font-size: 1.5rem;
+}
+
+.button--color--black{
+  background-color:rgb(54, 62, 70)
+}
+
+.button--color--black:hover,
+.button--color--black:active {
+  background: rgba(54, 62, 70, 0.685);
+  border-color: rgba(54, 62, 70, 0.685);
+}
+
+.button--color--yellow {
+  color: black;
+  background: #ffcb00;
+  border-color: #ffcb00;
+}
+
+.button--color--yellow:hover,
+.button--color--yellow:active {
+  color: white;
+  background: rgb(85, 83, 83);
+  background: rgb(85, 83, 83);
+}
+
+.button--color--orange {
+  color: black;
+  background: rgb(255, 60, 0);
+  border-color: rgb(255, 60, 0);
+}
+
+.button--color--orange:hover,
+.button--color--orange:active {
+  color: white;
+  background: rgb(85, 83, 83);
+  background: rgb(85, 83, 83);
+}
+
+
+.button--color--blue {
+  color: black;
+  background: #509ad6;
+  border-color: #509ad6;
+}
+
+.button--color--blue:hover,
+.button--color--blue:active {
+  color: white;
+  background: rgb(85, 83, 83);
+  border-color: rgb(85, 83, 83);
+}
+
