@@ -1,5 +1,5 @@
 
-<h1 align="center" style="border-bottom: none">Fault Management System</h1>
+<h1 align="center" style="border-bottom: none"><u>Fault Management System</u></h1>
 <h2 align="center" style="border-bottom: none">Web application for fault management system that provides a central place where businesses can store client's fault data and track client interactions.</h2>
 
 </br>
@@ -9,9 +9,6 @@
 
 ## Technologies
 ![Technologies](https://user-images.githubusercontent.com/57983441/189459908-edef8014-5401-4c07-ad15-3317b9348c56.png)
-
-
-</br>
 
 ## ***Video***
 
